@@ -41,7 +41,7 @@
         <!-- scala -->
         <scala.version>2.13.3</scala.version>
         <!-- scope 本地调试时注销 -->
-        <scala.scope>provided</scala.scope>
+        <scala.scope>compile</scala.scope>
         <scala-maven-plugin.version>4.4.0</scala-maven-plugin.version>
     </properties>
 
