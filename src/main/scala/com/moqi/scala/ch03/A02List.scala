@@ -5,7 +5,7 @@ package com.moqi.scala.ch03
  *
  * @author moqi On 10/29/20 11:29
  */
-object A02 {
+object A02List {
 
   def main(args: Array[String]): Unit = {
 

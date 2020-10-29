@@ -7,7 +7,7 @@ import java.math.BigInteger
  *
  * @author moqi On 10/29/20 11:03
  */
-object A01 {
+object A01Type {
 
   def main(args: Array[String]): Unit = {
     val big = new BigInteger("12345")
