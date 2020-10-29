@@ -8,8 +8,8 @@ package com.moqi.scala.ch04
 class A02CheckSumAccumulator {
   private var sum = 0
 
-  def add(b: Byte) = sum += b
+  def add(b: Byte): Unit = sum += b
 
-  def checkSum() = ~(sum & 0xFF) + 1
+  def checkSum(): Int = ~(sum & 0xFF) + 1
 
 }
