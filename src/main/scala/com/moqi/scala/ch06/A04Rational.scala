@@ -32,4 +32,6 @@ object A04Rational extends App {
 
   val sum1 = oneHalf add twoThirds
   println(s"sum1 = ${sum1}")
+  println(s"sum1.numerator = ${sum1.numerator}")
+  println(s"sum1.denominator = ${sum1.denominator}")
 }
