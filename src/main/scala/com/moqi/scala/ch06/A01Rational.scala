@@ -10,6 +10,5 @@ class A01Rational(n: Int, d: Int) {
 }
 
 object A01Rational extends App {
-  val rational = new A01Rational(1, 2)
-  println(s"rational = ${rational}")
+  println(new A01Rational(1, 2))
 }
