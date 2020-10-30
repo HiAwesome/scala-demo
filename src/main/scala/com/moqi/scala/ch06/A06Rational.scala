@@ -33,14 +33,6 @@ class A06Rational(n: Int, d: Int) {
 }
 
 object A06Rational extends App {
-  val oneHalf = new A06Rational(1, 2)
-  println(s"oneHalf = ${oneHalf}")
-
-  val twoThirds = new A06Rational(2, 3)
-  println(s"twoThirds = ${twoThirds}")
-
-  val sum1 = oneHalf add twoThirds
-  println(s"sum1 = ${sum1}")
-  println(s"sum1.numerator = ${sum1.numerator}")
-  println(s"sum1.denominator = ${sum1.denominator}")
+  val three = new A06Rational(3)
+  println(s"three = ${three}")
 }
