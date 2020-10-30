@@ -1,22 +1,25 @@
 package com.moqi.scala.ch06
 
+import scala.annotation.tailrec
+
 /**
- * 有理数类 5
+ * 有理数类 6
  *
  * @author moqi On 10/30/20 17:18
  */
 class A06Rational(n: Int, d: Int) {
   require(d != 0, "有理数的分母不可以为 0")
 
-  override def toString: String = n + "/" + d
-
+  private val g = gcd(n.abs, d.abs)
   // 分子
-  val numerator: Int = n
+  val numerator: Int = n / g
   // 分母
-  val denominator: Int = d
+  val denominator: Int = d / g
 
   // 辅助构造方法
   def this(n: Int) = this(n, 1)
+
+  override def toString: String = numerator + "/" + denominator
 
   def add(that: A06Rational): A06Rational = {
     new A06Rational(
@@ -30,9 +33,16 @@ class A06Rational(n: Int, d: Int) {
 
   def max(that: A06Rational): A06Rational =
     if (this.lessThan(that)) that else this
+
+  /**
+   * 取两个数的最大公约数
+   */
+  @tailrec
+  private def gcd(a: Int, b: Int): Int =
+    if (b == 0) a else gcd(b, a % b)
 }
 
 object A06Rational extends App {
-  val three = new A06Rational(3)
-  println(s"three = ${three}")
+  val gcd = new A06Rational(66, 42)
+  println(s"gcd = ${gcd}")
 }
