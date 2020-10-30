@@ -33,8 +33,29 @@ class A07Rational(n: Int, d: Int) {
    */
   def +(that: A07Rational): A07Rational = add(that)
 
+  /**
+   * 加号重载类型是整数的方法
+   */
+  def +(i: Int): A07Rational = new A07Rational(numerator + i * denominator, denominator)
+
+  def -(that: A07Rational): A07Rational = {
+    new A07Rational(
+      numerator * that.denominator - denominator * that.numerator,
+      denominator * that.denominator
+    )
+  }
+
+  def -(i: Int): A07Rational = new A07Rational(numerator - i * denominator, denominator)
+
   def *(that: A07Rational): A07Rational =
     new A07Rational(numerator * that.numerator, denominator * that.denominator)
+
+  def *(i: Int): A07Rational = new A07Rational(numerator * i, denominator)
+
+  def /(that: A07Rational): A07Rational =
+    new A07Rational(numerator * that.denominator, denominator * that.numerator)
+
+  def /(i: Int): A07Rational = new A07Rational(numerator, denominator * i)
 
   def lessThan(that: A07Rational): Boolean =
     this.numerator * that.denominator < that.numerator * this.denominator
@@ -51,19 +72,8 @@ class A07Rational(n: Int, d: Int) {
 }
 
 object A07Rational extends App {
-  val x = new A07Rational(1, 2)
+  val x = new A07Rational(2, 3)
   println(s"x = ${x}")
-
-  val y = new A07Rational(2, 3)
-  println(s"y = ${y}")
-
-  val sum1 = x + y
-  println(s"sum1 = ${sum1}")
-
-  val product1 = x * y
-  println(s"product1 = ${product1}")
-
-  println(x + x * y)
-  println((x + x) * y)
-  println(x + (x * y))
+  println(s"x * x = ${x * x}")
+  println(s"x * 2 = ${x * 2}")
 }
