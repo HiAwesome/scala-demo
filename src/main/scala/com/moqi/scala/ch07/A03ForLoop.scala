@@ -25,13 +25,36 @@ object A03ForLoop {
 
     grepWithMidStream(".*scala-lang.*")
 
+    println(s"scalaFiles = ${scalaFiles.mkString("Array(", ", ", ")")}")
+    println()
 
+    // yield 关键字必须出现在整个代码体之前
+    /*for (file <- fileHere if file.getName.endsWith(".scala")) {
+      yield file // 语法错误
+    }*/
+
+    println(s"forLineLengths = ${forLineLengths.mkString("Array(", ", ", ")")}")
+    println()
   }
 
-  def fileHere = (new File(".")).listFiles()
+  val forLineLengths =
+    for {
+      file <- fileHere
+      if file.getName.endsWith(".scala")
+      line <- fileLines(file)
+      trimmed = line.trim
+      if trimmed.matches(".*for.*")
+    } yield trimmed.length
 
-  //noinspection SourceNotClosed
-  def fileLines(file: File) = fromFile(file).getLines().toList
+  /**
+   * 产出一个新的集合
+   * for 子句 yield 代码体
+   */
+  def scalaFiles =
+    for {
+      file <- fileHere
+      if file.getName.endsWith(".scala")
+    } yield file
 
   /**
    * 嵌套迭代
@@ -39,7 +62,7 @@ object A03ForLoop {
   def grep(pattern: String) = {
 
     for (
-      file <- fileHere
+      file <- fileTopDir
       if file.getName.contains("o");
       line <- fileLines(file)
       if line.trim.matches(pattern)
@@ -54,7 +77,7 @@ object A03ForLoop {
   def grepWithMidStream(pattern: String) = {
 
     for (
-      file <- fileHere
+      file <- fileTopDir
       if file.getName.contains("o");
       line <- fileLines(file);
       trimmed = line.trim
@@ -71,7 +94,7 @@ object A03ForLoop {
   private def forWithMultiIfCondition: Unit = {
 
     for (
-      file <- fileHere
+      file <- fileTopDir
       if file.isFile
       if file.getName.contains("o")
     ) println(s"file = ${file}")
@@ -84,7 +107,7 @@ object A03ForLoop {
    * 在指令式风格中 if 应该写在 for 循环内部
    */
   private def forWithIfCondition: Unit = {
-    for (file <- fileHere if file.getName.contains("m")) {
+    for (file <- fileTopDir if file.getName.contains("m")) {
       println(s"file = ${file}")
     }
 
@@ -113,10 +136,17 @@ object A03ForLoop {
    */
   private def iterateFile: Unit = {
 
-    for (file <- fileHere) {
+    for (file <- fileTopDir) {
       println(s"file = ${file}")
     }
 
     println()
   }
+
+  def fileTopDir = (new File(".")).listFiles()
+
+  def fileHere = (new File("./src/main/scala/com/moqi/scala/ch07")).listFiles()
+
+  //noinspection SourceNotClosed
+  def fileLines(file: File) = fromFile(file).getLines().toList
 }
