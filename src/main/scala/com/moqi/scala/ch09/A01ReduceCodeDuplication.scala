@@ -13,6 +13,15 @@ object A01ReduceCodeDuplication {
 
     for (file <- filesEnding(".scala"))
       println(s"file.getName = ${file.getName}")
+    println()
+
+    for (file <- filesContaining("Reduce"))
+      println(s"file.getName = ${file.getName}")
+    println()
+
+    for (file <- filesRegex(".*Reduce.*"))
+      println(s"file.getName = ${file.getName}")
+    println()
 
   }
 
@@ -20,6 +29,14 @@ object A01ReduceCodeDuplication {
 
   def filesEnding(query: String) =
     for (file <- fileHere; if file.getName.endsWith(query))
+      yield file
+
+  def filesContaining(query: String) =
+    for (file <- fileHere; if file.getName.contains(query))
+      yield file
+
+  def filesRegex(query: String) =
+    for (file <- fileHere; if file.getName.matches(query))
       yield file
 
 }
