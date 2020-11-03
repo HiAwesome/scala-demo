@@ -34,7 +34,7 @@ object A07VariableScope {
     while (i <= 10) {
       var j = 1
       // i 和 j 在作用域内
-      while (j <= 20) {
+      while (j <= 10) {
         val product = (i * j).toString
         // i, j, product 在作用域内
         var k = product.length
