@@ -12,39 +12,39 @@ object A01ReduceCodeDuplication {
   def main(args: Array[String]): Unit = {
 
     for (file <- filesEnding(".scala"))
-      println(s"file.getName = ${file.getName}")
+      println(s"filesEnding file.getName = ${file.getName}")
     println()
 
     for (file <- filesContaining("Reduce"))
-      println(s"file.getName = ${file.getName}")
+      println(s"filesContaining file.getName = ${file.getName}")
     println()
 
     for (file <- filesRegex(".*Reduce.*"))
-      println(s"file.getName = ${file.getName}")
+      println(s"filesRegex file.getName = ${file.getName}")
     println()
 
     for (file <- filesEnding2(".scala"))
-      println(s"file.getName = ${file.getName}")
+      println(s"filesEnding2 file.getName = ${file.getName}")
     println()
 
     for (file <- filesContaining2("Reduce"))
-      println(s"file.getName = ${file.getName}")
+      println(s"filesContaining2 file.getName = ${file.getName}")
     println()
 
     for (file <- filesRegex2(".*Reduce.*"))
-      println(s"file.getName = ${file.getName}")
+      println(s"filesRegex2 file.getName = ${file.getName}")
     println()
 
     for (file <- filesEnding3(".scala"))
-      println(s"file.getName = ${file.getName}")
+      println(s"filesEnding3 file.getName = ${file.getName}")
     println()
 
     for (file <- filesContaining3("Reduce"))
-      println(s"file.getName = ${file.getName}")
+      println(s"filesContaining3 file.getName = ${file.getName}")
     println()
 
     for (file <- filesRegex3(".*Reduce.*"))
-      println(s"file.getName = ${file.getName}")
+      println(s"filesRegex3 file.getName = ${file.getName}")
     println()
 
   }
