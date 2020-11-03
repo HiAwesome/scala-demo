@@ -16,6 +16,10 @@ object A01Method {
     val fileName = new File("./LICENSE").getName
     processFile(fileName, 4)
 
+    /*val width = args(0).toInt
+    for (arg <- args.drop(1))
+      A01Method.processFile(arg, width)*/
+
   }
 
   def processLine(fileName: String, width: Int, line: String) =
