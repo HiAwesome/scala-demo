@@ -143,9 +143,9 @@ object A03ForLoop {
     println()
   }
 
-  def fileTopDir = (new File(".")).listFiles()
+  def fileTopDir = new File(".").listFiles()
 
-  def fileHere = (new File("./src/main/scala/com/moqi/scala/ch07")).listFiles()
+  def fileHere = new File("./src/main/scala/com/moqi/scala/ch07").listFiles()
 
   //noinspection SourceNotClosed
   def fileLines(file: File) = fromFile(file).getLines().toList
