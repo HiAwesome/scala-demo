@@ -32,11 +32,9 @@ object A02SimplifyCallerCode {
   def containsOdd(nums: List[Int]): Boolean = {
     var exists = false
 
-    for (num <- nums)
-      if (num % 2 == 1) {
+    for (num <- nums; if !exists)
+      if (num % 2 == 1)
         exists = true
-        return exists
-      }
 
     exists
   }
@@ -46,11 +44,9 @@ object A02SimplifyCallerCode {
   def containsNeg(nums: List[Int]): Boolean = {
     var exists = false
 
-    for (num <- nums)
-      if (num < 0) {
+    for (num <- nums; if !exists)
+      if (num < 0)
         exists = true
-        return exists
-      }
 
     exists
   }
