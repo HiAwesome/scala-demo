@@ -1,5 +1,10 @@
 package com.moqi.scala.ch07
 
+import java.io.{BufferedReader, InputStreamReader}
+
+import scala.annotation.tailrec
+import scala.util.control.Breaks.{break, breakable}
+
 /**
  * 没有 break 和 continue 的日子
  *
@@ -13,6 +18,31 @@ object A06NoBreakAndContinue {
 
     println(s"func1(scalaArray) = ${func1(scalaArray)}")
 
+    println(s"searchFrom(0) = ${searchFrom(0)}")
+
+    breakAbleTest
+
+  }
+
+  def breakAbleTest = {
+    val in = new BufferedReader(new InputStreamReader(System.in))
+
+    breakable {
+      while (true) {
+        println("input something or blank to exit: ")
+        val str: String = in.readLine()
+        if (str != "") println(s"str = ${str}")
+        else break
+      }
+    }
+  }
+
+  @tailrec
+  def searchFrom(i: Int): Int = {
+    if (i >= scalaArray.length) -1
+    else if (scalaArray(i).startsWith("-")) searchFrom(i + 1)
+    else if (scalaArray(i).endsWith(".scala")) i + 1
+    else searchFrom(i + 1)
   }
 
   def func1(args: Array[String]): Int = {
