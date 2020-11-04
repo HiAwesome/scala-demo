@@ -24,7 +24,7 @@ class A04ArrayElement(conts: Array[String]) extends A04AbstractElement {
 
 }
 
-object A04Test {
+object A04OverrideMethodsAndFields {
 
   def main(args: Array[String]): Unit = {
 

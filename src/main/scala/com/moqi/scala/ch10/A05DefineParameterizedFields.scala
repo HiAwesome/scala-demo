@@ -30,7 +30,7 @@ class A05Cat {
 
 class A05Tiger(override val dangerous: Boolean, private var age: Int) extends A05Cat
 
-object A05Test {
+object A05DefineParameterizedFields {
 
   def main(args: Array[String]): Unit = {
 

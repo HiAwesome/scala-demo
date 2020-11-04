@@ -32,7 +32,7 @@ class A06LineElement(s: String) extends A06ArrayElement(Array(s)) {
 
 }
 
-object A06Test {
+object A06CallSuperClassConstructor {
 
   def main(args: Array[String]): Unit = {
 

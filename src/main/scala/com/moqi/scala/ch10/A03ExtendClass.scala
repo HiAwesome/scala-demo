@@ -23,7 +23,7 @@ class A03ArrayElement(conts: Array[String]) extends A03AbstractElement {
 
 }
 
-object A03Test {
+object A03ExtendClass {
 
   def main(args: Array[String]): Unit = {
 
