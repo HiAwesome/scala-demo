@@ -13,4 +13,9 @@ abstract class A02AbstractElement {
 
   def width: Int = if (height == 0) 0 else contents(0).length
 
+  // 统一访问原则：从调用方来看，无参方法等价于字段
+  /*val height: Int = contents.length
+
+  val width: Int = if (height == 0) 0 else contents(0).length*/
+
 }
