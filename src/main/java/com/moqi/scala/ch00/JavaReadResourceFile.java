@@ -1,4 +1,4 @@
-package com.moqi.scala;
+package com.moqi.scala.ch00;
 
 import java.io.*;
 import java.nio.charset.Charset;

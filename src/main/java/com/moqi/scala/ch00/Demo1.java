@@ -1,4 +1,4 @@
-package com.moqi.scala;
+package com.moqi.scala.ch00;
 
 /**
  * @author moqi On 10/28/20 11:09
