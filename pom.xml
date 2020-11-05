@@ -16,17 +16,17 @@
 
         <!-- spock testing framework -->
         <spock.scope>test</spock.scope>
-        <spock-core.version>2.0-M3-groovy-3.0</spock-core.version>
+        <spock-core.version>1.3-groovy-2.5</spock-core.version>
         <junit-jupiter.version>5.7.0</junit-jupiter.version>
         <groovy-all.version>3.0.6</groovy-all.version>
         <cglib-nodep.version>3.3.0</cglib-nodep.version>
         <objenesis.version>3.1</objenesis.version>
-        <byte-buddy.version>1.10.17</byte-buddy.version>
+        <byte-buddy.version>1.10.18</byte-buddy.version>
         <gmavenplus-plugin.version>1.8.1</gmavenplus-plugin.version>
         <surefire-junit47.version>3.0.0-M4</surefire-junit47.version>
 
         <!-- common tool library -->
-        <slf4j.version>2.0.0-alpha1</slf4j.version>
+        <slf4j.version>1.7.30</slf4j.version>
         <lombok.version>1.18.16</lombok.version>
         <apache.common.lang3.version>3.11</apache.common.lang3.version>
         <fastjson.version>1.2.74</fastjson.version>
