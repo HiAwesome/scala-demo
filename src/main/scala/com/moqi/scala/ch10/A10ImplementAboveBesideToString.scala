@@ -25,8 +25,21 @@ abstract class A10AbstractElement {
 
   /**
    * 将两个元素并排放在一起
+   * 第二版：使用函数式风格
    */
   def beside(that: A10AbstractElement): A10AbstractElement = {
+    new A10ArrayElement(
+      for (
+        (line1, line2) <- this.contents zip that.contents
+      ) yield  line1 + line2
+    )
+  }
+
+  /**
+   * 将两个元素并排放在一起
+   * 第一版：使用指令式风格
+   */
+  def besideV0(that: A10AbstractElement): A10AbstractElement = {
     val contents = new Array[String](this.contents.length)
 
     // for (i <- 0 until this.contents.length)
