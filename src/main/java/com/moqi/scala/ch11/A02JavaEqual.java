@@ -6,7 +6,7 @@ package com.moqi.scala.ch11;
  * @author moqi On 11/5/20 16:04
  */
 
-public class A01JavaEqual {
+public class A02JavaEqual {
 
     public static void main(String[] args) {
 
