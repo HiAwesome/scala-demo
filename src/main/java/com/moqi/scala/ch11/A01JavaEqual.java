@@ -1,7 +1,7 @@
 package com.moqi.scala.ch11;
 
 /**
- * Java 比较
+ * Java == 比较
  *
  * @author moqi On 11/5/20 16:04
  */
