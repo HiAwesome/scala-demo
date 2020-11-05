@@ -25,7 +25,8 @@ abstract class A10AbstractElement {
 
   /**
    * 将两个元素并排放在一起
-   * 第二版：使用函数式风格
+   * 第二版：使用函数式风格，避免了显式的数组下标
+   * Array(1,2,3) zip Array("a", "b") => Array[(Int, String)] = Array((1,a), (2,b))
    */
   def beside(that: A10AbstractElement): A10AbstractElement = {
     new A10ArrayElement(
@@ -48,6 +49,11 @@ abstract class A10AbstractElement {
 
     new A10ArrayElement(contents)
   }
+
+  /**
+   * 重写 toString，空参数列表
+   */
+  override def toString: String = contents mkString "\n"
 
 }
 
