@@ -61,16 +61,21 @@ abstract class A12AbstractElement {
   /**
    * 将两个元素拼接在一起
    */
-  def above(that: A12AbstractElement): A12AbstractElement =
-    elem(this.contents ++ that.contents)
+  def above(that: A12AbstractElement): A12AbstractElement = {
+    val this1 = this widen that.width
+    val that1 = that widen this.width
+    elem(this1.contents ++ that1.contents)
+  }
 
   /**
    * 将两个元素并排放在一起
    */
   def beside(that: A12AbstractElement): A12AbstractElement = {
+    val this1 = this heighten that.height
+    val that1 = that heighten this.height
     elem(
       for (
-        (line1, line2) <- this.contents zip that.contents
+        (line1, line2) <- this1.contents zip that1.contents
       ) yield line1 + line2
     )
   }
