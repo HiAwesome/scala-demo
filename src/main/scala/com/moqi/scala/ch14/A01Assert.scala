@@ -18,7 +18,10 @@ object AbstractElement {
   def elem(line: String): AbstractElement = new LineElement(line)
 
   def elem(char: Char, width: Int, height: Int): AbstractElement =
-    new UniformElement(char, width, height)
+    if (width > 0)
+      new UniformElement(char, width, height)
+    else
+      throw new IllegalArgumentException("width can not be negative")
 
   private class ArrayElement(private val conts: Array[String]) extends AbstractElement {
 
