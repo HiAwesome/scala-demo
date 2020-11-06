@@ -43,6 +43,7 @@
         <!-- scope 本地调试时注销 -->
         <scala.scope>compile</scala.scope>
         <scala-maven-plugin.version>4.4.0</scala-maven-plugin.version>
+        <scala-test.version>3.2.2</scala-test.version>
     </properties>
 
 
@@ -144,6 +145,16 @@
             <version>${scala.version}</version>
             <scope>${scala.scope}</scope>
         </dependency>
+
+        <!-- Scala-Test -->
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.13</artifactId>
+            <version>${scala-test.version}</version>
+            <!-- 练习时暂时设定为默认 scope -->
+            <!--<scope>test</scope>-->
+        </dependency>
+
     </dependencies>
 
     <build>
