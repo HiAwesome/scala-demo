@@ -13,5 +13,5 @@ trait A02CharSequence {
   def charAt(index: Int): Char
   def length: Int
   def subSequence(start: Int, end: Int): CharSequence
-  override def toString: String = String
+  override def toString: String = "A02CharSequence"
 }
