@@ -5,6 +5,7 @@ import org.scalatest.funsuite.AnyFunSuite
 
 /**
  * 用 Scala 写测试
+ * Scala 的 FunSuite 已经更新为 AnyFunSuite 了，具体参考 https://stackoverflow.com/a/62680204
  *
  * @author moqi On 11/6/20 17:57
  */
