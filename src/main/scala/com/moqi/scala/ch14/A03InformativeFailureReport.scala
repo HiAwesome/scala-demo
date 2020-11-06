@@ -41,4 +41,13 @@ class A03Test extends AnyFunSuite {
     }
   }
 
+  test("Arithmetic Exception2") {
+    val caught =
+      intercept[ArithmeticException] {
+        1 / 0
+      }
+
+    assert(caught.getMessage == "/ by zero")
+  }
+
 }
