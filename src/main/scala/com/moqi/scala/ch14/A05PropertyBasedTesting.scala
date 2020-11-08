@@ -16,6 +16,9 @@ import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
  *
  * 根据第四版的代码，引入 scalatestplus-scalacheck_2.13 依赖解决问题
  *
+ * 注意，第四版代码中 elem 第二个参数和最终 equal 的对象为 w % 100 而不是 w,
+ * 实测 w 会导致这个方法 OOM
+ *
  * @author moqi On 11/8/20 09:51
  */
 object A05PropertyBasedTesting {
