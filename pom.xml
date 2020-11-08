@@ -44,6 +44,7 @@
         <scala.scope>compile</scala.scope>
         <scala-maven-plugin.version>4.4.0</scala-maven-plugin.version>
         <scala-test.version>3.2.2</scala-test.version>
+        <scala-test-plus.version>3.1.0.0-RC2</scala-test-plus.version>
     </properties>
 
 
@@ -154,6 +155,17 @@
             <!-- 练习时暂时设定为默认 scope -->
             <!--<scope>test</scope>-->
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.scalatestplus/scalatestplus-scalacheck -->
+        <dependency>
+            <groupId>org.scalatestplus</groupId>
+            <artifactId>scalatestplus-scalacheck_2.13</artifactId>
+            <version>${scala-test-plus.version}</version>
+            <!-- 练习时暂时设定为默认 scope -->
+            <!--<scope>test</scope>-->
+        </dependency>
+
+
 
     </dependencies>
 
