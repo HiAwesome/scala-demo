@@ -17,10 +17,10 @@ object A01SimpleExample {
    * 用到模式匹配的 simplifyTop 函数
    * 选择器 match {可选分支}
    */
-  def simplifyTop(expr: A01Expr): A01Expr = expr match {
-    case A01UnOp("-", A01UnOp("-", e)) => e // 双重取负
-    case A01BinOp("+", e, A01Number(0)) => e // 加 0
-    case A01BinOp("*", e, A01Number(1)) => e // 乘 1
+  def simplifyTop(expr: Expr): Expr = expr match {
+    case UnOp("-", UnOp("-", e)) => e // 双重取负
+    case BinOp("+", e, Number(0)) => e // 加 0
+    case BinOp("*", e, Number(1)) => e // 乘 1
     case _ => expr
   }
 
@@ -28,23 +28,23 @@ object A01SimpleExample {
    * 带有空的"默认"样例的模式匹配
    * 如果去掉代码"case _ =>"，则对任何非 BinOp 的 expr 入参都会抛出 MatchError
    */
-  def emptyMatch(expr: A01Expr): Unit = expr match {
-    case A01BinOp(op, left, right) => println(expr + " is a binary operation")
+  def emptyMatch(expr: Expr): Unit = expr match {
+    case BinOp(op, left, right) => println(expr + " is a binary operation")
     case _ =>
   }
 
   private def func1: Unit = {
-    val v = A01Var("x")
+    val v = Var("x")
     println(s"v = ${v}")
     println(s"v.name = ${v.name}")
     println()
 
-    val op = A01BinOp("+", A01Number(1), v)
+    val op = BinOp("+", Number(1), v)
     println(s"op = ${op}")
     println(s"op.left = ${op.left}")
     println()
 
-    println(s"op.right == Var(x) = ${op.right == A01Var("x")}")
+    println(s"op.right == Var(x) = ${op.right == Var("x")}")
     println()
 
     val copyOp = op.copy(operator = "-")
@@ -53,12 +53,12 @@ object A01SimpleExample {
   }
 }
 
-abstract class A01Expr
+abstract class Expr
 
-case class A01Var(name: String) extends A01Expr
+case class Var(name: String) extends Expr
 
-case class A01Number(number: Double) extends A01Expr
+case class Number(number: Double) extends Expr
 
-case class A01UnOp(operator: String, arg: A01Expr) extends A01Expr
+case class UnOp(operator: String, arg: Expr) extends Expr
 
-case class A01BinOp(operator: String, left: A01Expr, right: A01Expr) extends A01Expr
+case class BinOp(operator: String, left: Expr, right: Expr) extends Expr
