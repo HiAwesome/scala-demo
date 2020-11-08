@@ -31,6 +31,7 @@
         <apache.common.lang3.version>3.11</apache.common.lang3.version>
         <fastjson.version>1.2.74</fastjson.version>
         <guava.version>30.0-jre</guava.version>
+        <jetbrains-annotations>20.1.0</jetbrains-annotations>
 
         <!-- maven plugins -->
         <maven.compiler.plugin.java.version>1.8</maven.compiler.plugin.java.version>
@@ -128,6 +129,12 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>${jetbrains-annotations}</version>
         </dependency>
         <!-- common tool library end -->
 
