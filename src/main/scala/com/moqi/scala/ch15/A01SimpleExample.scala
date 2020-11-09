@@ -28,9 +28,9 @@ object A01SimpleExample {
    * 带有空的"默认"样例的模式匹配
    * 如果去掉代码"case _ =>"，则对任何非 BinOp 的 expr 入参都会抛出 MatchError
    */
-  def checkBinary(expr: Expr): Unit = expr match {
-    case BinOp(op, left, right) => println(expr + " is a binary operation")
-    case _ =>
+  def checkBinary(expr: Expr): String = expr match {
+    case BinOp(op, left, right) => expr + " is a binary operation"
+    case _ => "default branch"
   }
 
   private def func1: Unit = {

@@ -17,7 +17,42 @@ object A02TypesOfPatterns {
 
     func3
 
+    func4
 
+    func5
+
+    func6
+
+    func7
+
+  }
+
+  private def func7: Unit = {
+    println(s"isIntIntMap(Map(1 -> 10)) = ${isIntIntMap(Map(1 -> 10))}")
+    println(s"isIntIntMap(Map(1 -> 'a')) = ${isIntIntMap(Map(1 -> 'a'))}")
+    println(s"isIntIntMap(List(1, 2, 3)) = ${isIntIntMap(List(1, 2, 3))}")
+    println()
+  }
+
+  private def func6: Unit = {
+    println(s"generalSize(abc) = ${generalSize("abc")}")
+    println(s"generalSize(Map(1 -> 'a', 2 -> 'b')) = ${generalSize(Map(1 -> 'a', 2 -> 'b'))}")
+    println(s"generalSize(Pi) = ${generalSize(Pi)}")
+    println()
+  }
+
+  private def func5: Unit = {
+    println(s"tupleDemo((a , 3, -tuple)) = ${tupleDemo(("a ", 3, "-tuple"))}")
+    println(s"tupleDemo((1, 1.0, 3.14, Pi)) = ${tupleDemo((1, 1.0, 3.14, Pi))}")
+    println()
+  }
+
+  private def func4: Unit = {
+    println(s"startWithZero1(List(0, 1, 2)) = ${startWithZero1(List(0, 1, 2))}")
+    println(s"startWithZero1(List(0)) = ${startWithZero1(List(0))}")
+    println(s"startWithZero2(List(0, 0, 0, 0, 0)) = ${startWithZero2(List(0, 0, 0, 0, 0))}")
+    println(s"startWithZero2(List(0)) = ${startWithZero2(List(0))}")
+    println()
   }
 
   private def func3: Unit = {
@@ -43,6 +78,7 @@ object A02TypesOfPatterns {
       case _ => "Default OK"
     }
     println(s"res3 = ${res3}")
+    println()
   }
 
   private def func2: Unit = {
@@ -63,18 +99,18 @@ object A02TypesOfPatterns {
   /**
    * 通配模式 1
    */
-  def checkBinary1(expr: Expr): Unit = expr match {
-    case BinOp(op, left, right) => println(expr + " is a binary operation")
-    case _ =>
+  def checkBinary1(expr: Expr): String = expr match {
+    case BinOp(op, left, right) => expr + " is a binary operation"
+    case _ => "default branch"
   }
 
   /**
    * 通配模式 2
    * 使用 _ 来忽略不关心的局部，具体使用是 _, _, _
    */
-  def checkBinary2(expr: Expr): Unit = expr match {
-    case BinOp(_, _, _) => println(expr + " is a binary operation")
-    case _ => println("It's something else.")
+  def checkBinary2(expr: Expr): String = expr match {
+    case BinOp(_, _, _) => expr + " is a binary operation"
+    case _ => "It's something else."
   }
 
   /**
@@ -91,7 +127,7 @@ object A02TypesOfPatterns {
   /**
    * 变量模式
    */
-  def startWithZero(expr: Any) = expr match {
+  def startWithZero(expr: Any): String = expr match {
     case 0 => "zero"
     case somethingElse => "not zero: " + somethingElse
   }
@@ -100,9 +136,66 @@ object A02TypesOfPatterns {
    * 构造方法匹配
    * 这个示例是一个长度只有一行但深度有三层的模式
    */
-  def deepMatch(expr: Expr) = expr match {
-    case BinOp("+", e, Number(0)) => println("a deep match")
-    case _ =>
+  def deepMatch(expr: Expr): String = expr match {
+    case BinOp("+", e, Number(0)) => "a deep match"
+    case _ => "It's something else."
+  }
+
+  /**
+   * 序列模式，比如 List 或者 Array
+   * 固定长度的序列模式
+   */
+  def startWithZero1(expr: List[Int]): String = expr match {
+    case List(0, _, _) => "found it"
+    case _ => "It's something else."
+  }
+
+  /**
+   * 序列模式，比如 List 或者 Array
+   * 任意长度的序列模式
+   * _* 可以匹配任意数量的元素，包括 0 个
+   */
+  def startWithZero2(expr: List[Int]): String = expr match {
+    case List(0, _*) => "found it"
+    case _ => "It's something else."
+  }
+
+  /**
+   * 元祖模式
+   */
+  def tupleDemo(expr: Any): String = expr match {
+    case (a, b, c) => "matched " + a + b + c
+    case _ => "It's something else."
+  }
+
+  /**
+   * 带类型的模式
+   * 返回不同类型对象的大小或者长度
+   */
+  def generalSize(x: Any): Int = x match {
+    case s: String => s.length
+    case m: Map[_, _] => m.size
+    case _ => -1
+  }
+
+  /**
+   * Scala 类型转换
+   * 使用 isInstanceOf 和 asInstanceOf（不良风格）
+   */
+  //noinspection TypeCheckCanBeMatch
+  def isInstance(expr: Any) =
+    if (expr.isInstanceOf[String]) {
+      val s = expr.asInstanceOf[String]
+      s.length
+    } else 0
+
+  /**
+   * 类型擦除
+   * 类型被擦除 Map[Int, Int] 等于 Map[_, _]
+   */
+  def isIntIntMap(x: Any) = x match {
+    case x: Map[Int, Int] => true
+    case _ => false
   }
 
 }
