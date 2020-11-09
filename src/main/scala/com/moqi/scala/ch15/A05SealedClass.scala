@@ -19,6 +19,7 @@ object A05SealedClass {
   def describe(expr: Expr): String = expr match {
     case Number(_) => "a number"
     case Var(_) => "a variable"
+    case _ => throw new RuntimeException // 不应该发生
   }
 
 }
