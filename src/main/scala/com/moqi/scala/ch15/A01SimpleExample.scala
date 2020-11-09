@@ -53,7 +53,11 @@ object A01SimpleExample {
   }
 }
 
-abstract class Expr
+/**
+ * 将 Expr 设定为密封类
+ * 密封类除了在同一个文件中定义的子类之外，不能添加新的子类
+ */
+sealed abstract class Expr
 
 case class Var(name: String) extends Expr
 
