@@ -25,6 +25,23 @@ object A02TypesOfPatterns {
 
     func7
 
+    func8
+
+    func9
+
+  }
+
+  private def func9: Unit = {
+    println(s"matchUpOn(UnOp(abs, )) = ${matchUpOn(UnOp("abs", UnOp("abs", Number(1))))}")
+    println(s"matchUpOn(UnOp(abs, )) = ${matchUpOn(UnOp("abs", UnOp("not match operate", Number(1))))}")
+    println(s"matchUpOn(Number(100)) = ${matchUpOn(Number(100))}")
+    println()
+  }
+
+  private def func8: Unit = {
+    println(s"isStringArray(Array(abc)) = ${isStringArray(Array("abc"))}")
+    println(s"isStringArray(Array(1, 2, 3)) = ${isStringArray(Array(1, 2, 3))}")
+    println()
   }
 
   private def func7: Unit = {
@@ -190,12 +207,30 @@ object A02TypesOfPatterns {
     } else 0
 
   /**
-   * 类型擦除
+   * 类型擦除 Map 和 List
    * 类型被擦除 Map[Int, Int] 等于 Map[_, _]
    */
   def isIntIntMap(x: Any) = x match {
-    case x: Map[Int, Int] => true
+    case _: Map[Int, Int] => true
     case _ => false
+  }
+
+  /**
+   * Array 不执行类型擦除，因为 Java 和 Scala 都进行了处理
+   */
+  def isStringArray(x: Any): String = x match {
+    case _: Array[String] => "yes, it is string array"
+    case _ => "no, it's not string array"
+  }
+
+  /**
+   * 变量绑定
+   * 通过 @ 字符进行绑定
+   * 第一条规则匹配到内部的 UnOp 对象整体
+   */
+  def matchUpOn(expr: Expr) = expr match {
+    case UnOp("abs", e@UnOp("abs", _)) => e
+    case _ =>
   }
 
 }
