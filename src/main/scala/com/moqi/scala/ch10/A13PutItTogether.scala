@@ -1,6 +1,6 @@
 package com.moqi.scala.ch10
 
-import com.moqi.scala.ch10.A13AbstractElement._
+import com.moqi.scala.ch10.Element._
 
 /**
  * 放在一起
@@ -27,7 +27,7 @@ object A13IncreaseAndWiden {
   val space = elem(" ")
   val corner = elem("+")
 
-  def spiral(nEdges: Int, direction: Int): A13AbstractElement = {
+  def spiral(nEdges: Int, direction: Int): Element = {
     if (nEdges == 1)
       elem("+")
     else {
@@ -50,22 +50,22 @@ object A13IncreaseAndWiden {
 
 }
 
-object A13AbstractElement {
+object Element {
 
-  def elem(contents: Array[String]): A13AbstractElement = new A13ArrayElement(contents)
+  def elem(contents: Array[String]): Element = new ArrayElement(contents)
 
-  def elem(line: String): A13AbstractElement = new A13LineElement(line)
+  def elem(line: String): Element = new LineElement(line)
 
-  def elem(char: Char, width: Int, height: Int): A13AbstractElement =
-    new A13UniformElement(char, width, height)
+  def elem(char: Char, width: Int, height: Int): Element =
+    new UniformElement(char, width, height)
 
-  private class A13ArrayElement(private val conts: Array[String]) extends A13AbstractElement {
+  private class ArrayElement(private val conts: Array[String]) extends Element {
 
     override val contents: Array[String] = conts
 
   }
 
-  private class A13LineElement(s: String) extends A13AbstractElement {
+  private class LineElement(s: String) extends Element {
 
     val contents = Array(s)
 
@@ -75,11 +75,11 @@ object A13AbstractElement {
 
   }
 
-  private class A13UniformElement(
-                                   ch: Char,
-                                   override val width: Int,
-                                   override val height: Int
-                                 ) extends A13AbstractElement {
+  private class UniformElement(
+                                ch: Char,
+                                override val width: Int,
+                                override val height: Int
+                              ) extends Element {
 
     private val line = ch.toString * width
 
@@ -89,7 +89,7 @@ object A13AbstractElement {
 
 }
 
-abstract class A13AbstractElement {
+abstract class Element {
 
   def contents: Array[String]
 
@@ -100,7 +100,7 @@ abstract class A13AbstractElement {
   /**
    * 将两个元素拼接在一起
    */
-  def above(that: A13AbstractElement): A13AbstractElement = {
+  def above(that: Element): Element = {
     val this1 = this widen that.width
     val that1 = that widen this.width
     elem(this1.contents ++ that1.contents)
@@ -109,7 +109,7 @@ abstract class A13AbstractElement {
   /**
    * 将两个元素并排放在一起
    */
-  def beside(that: A13AbstractElement): A13AbstractElement = {
+  def beside(that: Element): Element = {
     val this1 = this heighten that.height
     val that1 = that heighten this.height
     elem(
@@ -119,7 +119,7 @@ abstract class A13AbstractElement {
     )
   }
 
-  def widen(w: Int): A13AbstractElement =
+  def widen(w: Int): Element =
     if (w <= width) this
     else {
       val left = elem(' ', (w - width) / 2, height)
@@ -127,7 +127,7 @@ abstract class A13AbstractElement {
       left beside this beside right
     }
 
-  def heighten(h: Int): A13AbstractElement =
+  def heighten(h: Int): Element =
     if (h <= height) this
     else {
       val top = elem(' ', width, (h - height) / 2)
