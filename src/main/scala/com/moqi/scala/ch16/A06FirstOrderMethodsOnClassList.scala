@@ -9,7 +9,7 @@ package com.moqi.scala.ch16
  */
 object A06FirstOrderMethodsOnClassList {
 
-  private val abcde = List('a', 'b', 'c', 'd', 'e')
+  val abcde = List('a', 'b', 'c', 'd', 'e')
   private val fruit = List("apple", "orange", "pears")
 
   def main(args: Array[String]): Unit = {
