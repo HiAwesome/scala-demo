@@ -12,7 +12,15 @@ object A08AComplexExample {
 
   def main(args: Array[String]): Unit = {
 
+    val f = new ExprFormatter
+    val e1 = BinOp("*", BinOp("/", Number(1), Number(2)), BinOp("+", Var("x"), Number(1)))
+    val e2 = BinOp("+", BinOp("/", Var("x"), Number(2)), BinOp("/", Number(1.5), Var("x")))
+    val e3 = BinOp("/", e1, e2)
 
+    def show(e: Expr) = println(f.format(e) + "\n\n")
+
+    for (e <- Array(e1, e2, e3))
+      show(e)
 
   }
 
@@ -51,7 +59,9 @@ class ExprFormatter {
     orders.toMap
   }
 
+  // 最高优先级，被初始化为数组长度
   private val unaryPrecedence = OpGroups.length
+  // 最低优先级，被初始化为 -1
   private val fractionPrecedence = -1
 
   private def format(e: Expr, enclPrec: Int): Element =
@@ -65,7 +75,7 @@ class ExprFormatter {
 
         elem(stripDot(num.toString))
 
-      case UnOp(op, arg) =>elem(op) beside format(arg, unaryPrecedence)
+      case UnOp(op, arg) => elem(op) beside format(arg, unaryPrecedence)
 
       case BinOp("/", left, right) =>
         val top = format(left, fractionPrecedence)
