@@ -23,6 +23,12 @@ object A03ConstructingLists {
     println(s"nums = ${nums}")
     println(s"diag3 = ${diag3}")
     println(s"empty = ${empty}")
+    println()
+
+    // :: 符号是右结合的
+    val nums2 = 1 :: 2 :: 3 :: 4 :: Nil
+    println(s"nums = ${nums}")
+    println(s"nums == nums2 = ${nums == nums2}")
 
   }
 
