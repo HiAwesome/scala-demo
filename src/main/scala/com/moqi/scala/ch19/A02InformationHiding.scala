@@ -26,7 +26,7 @@ object A02InformationHiding {
 
   private def func1: Unit = {
     // Queue 为自定义的 Queue
-    val q = Queue(1, 2, 3)
+    val q = A01Queue(1, 2, 3)
     println(s"q = ${q}")
     val q1 = q enqueue 4
     println(s"q1 = ${q1}")
@@ -54,7 +54,7 @@ object A02Queue {
                               private val trailing: List[T]
                             ) extends A02Queue[T] {
 
-    def mirror =
+    def mirror: QueueImpl[T] =
       if (leading.isEmpty)
         new QueueImpl(trailing.reverse, Nil)
       else
