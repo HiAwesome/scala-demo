@@ -29,10 +29,13 @@ object A08UpperBounds {
     println(s"sortedPeople = ${sortedPeople}")
     println()
 
-    // 可以编译通过，但会运行报错 inferred type arguments [Int] do not conform to method orderMergeSort's type parameter bounds [T <: Ordered[T]]
-    //    val wontCompile = orderMergeSort(List(3, 2, 1))
-    val wontCompile = orderMergeSort(List(3, 2, 1))
-    println(s"wontCompile = ${wontCompile}")
+    /**
+     * 编译出错，但 IDEA 不显示，
+     * inferred type arguments [Int] do not conform to method orderMergeSort's type parameter bounds
+     *
+     */
+    /*val wontCompile = orderMergeSort(List(3, 2, 1))
+    println(s"wontCompile = ${wontCompile}")*/
   }
 
   /**

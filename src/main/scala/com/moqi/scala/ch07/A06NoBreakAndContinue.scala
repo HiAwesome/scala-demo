@@ -12,7 +12,7 @@ import scala.util.control.Breaks.{break, breakable}
  */
 object A06NoBreakAndContinue {
 
-  val scalaArray: Array[String] = Array.apply("1", "2", "-", "2-2", "a.scala")
+  val scalaArray: Array[String] = Array.apply("1", "2", "-", "2-2", "CompileError.scala")
 
   def main(args: Array[String]): Unit = {
 
