@@ -22,6 +22,7 @@ object A04CheckingVarianceAnnotations {
   }
 }
 
+/*
 
 class StrangeIntQueue extends A02Queue[Int] {
   override def head: Int = 1
@@ -33,4 +34,5 @@ class StrangeIntQueue extends A02Queue[Int] {
     super.enqueue(x)
   }
 }
+*/
 
