@@ -78,3 +78,24 @@ trait RationalTrait {
 
   override def toString: String = number + "/" + denominator
 }
+
+/**
+ * 对象定义中预初始化的字段
+ */
+object twoThirds extends {
+  val numberArg = 2
+  val denominatorArg = 3
+} with RationalTrait
+
+/**
+ * 类定义中的预初始化字段
+ */
+class RationalClass(n: Int, d: Int) extends {
+  val numberArg = n
+  val denominatorArg = d
+} with RationalTrait {
+  def +(that: RationalClass) = new RationalClass(
+    number * that.denominator + that.number * denominator,
+    denominator * that.denominator
+  )
+}
