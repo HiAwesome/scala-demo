@@ -17,6 +17,46 @@ object A05InitializingAbstractVals {
 
     func3
 
+    // func4
+
+    func5
+
+    func6
+
+  }
+
+  /**
+   * LazyDemo = com.moqi.scala.ch20.LazyDemo$@22f71333
+   * initializing x
+   * LazyDemo.x = done
+   * LazyDemo 的初始化不涉及对 lazy 字段的初始化
+   */
+  private def func6: Unit = {
+    println(s"LazyDemo = ${LazyDemo}")
+    println(s"LazyDemo.x = ${LazyDemo.x}")
+    println()
+  }
+
+  /**
+   * initializing x
+   * Demo = com.moqi.scala.ch20.Demo$@6cd8737
+   * Demo.x = done
+   * 调用类则字段直接被初始化
+   */
+  private def func5: Unit = {
+    println(s"Demo = ${Demo}")
+    println(s"Demo.x = ${Demo.x}")
+    println()
+  }
+
+  /**
+   * 预初始化字段不能引用那个正在被构造的对象
+   */
+  private def func4: Unit = {
+    /*val r4 = new {
+      val numberArg = 1
+      val denominatorArg = this.numberArg * 2
+    } with RationalTrait*/
   }
 
   /**
@@ -98,4 +138,18 @@ class RationalClass(n: Int, d: Int) extends {
     number * that.denominator + that.number * denominator,
     denominator * that.denominator
   )
+}
+
+object Demo {
+  val x = {
+    println("initializing x")
+    "done"
+  }
+}
+
+object LazyDemo {
+  lazy val x = {
+    println("initializing x")
+    "done"
+  }
 }
