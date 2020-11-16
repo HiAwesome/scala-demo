@@ -23,6 +23,18 @@ object A05InitializingAbstractVals {
 
     func6
 
+    func7
+
+  }
+
+  private def func7: Unit = {
+    val x = 2
+    val r4 = new LazyRationalTrait {
+      override val numberArg: Int = 1 * x
+      override val denominatorArg: Int = 2 * x
+    }
+    println(s"r4 = ${r4}")
+    println()
   }
 
   /**
@@ -153,3 +165,26 @@ object LazyDemo {
     "done"
   }
 }
+
+/**
+ * 初始化带惰性的 val 特质
+ */
+trait LazyRationalTrait {
+  val numberArg: Int
+  val denominatorArg: Int
+  lazy val number = numberArg / g
+  lazy val denominator = denominatorArg / g
+
+  override def toString: String = number + "/" + denominator
+
+  private lazy val g = {
+    require(denominatorArg != 0)
+    gcd(numberArg, denominatorArg)
+  }
+
+  @tailrec
+  private def gcd(a: Int, b: Int): Int =
+    if (b == 0) a else gcd(b, a % b)
+}
+
+
