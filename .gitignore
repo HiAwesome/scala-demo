@@ -4,3 +4,4 @@ target
 *.iml
 
 src/main/resources/output.txt
+script/ch21/Mocha.class
