@@ -29,7 +29,7 @@
         <slf4j.version>1.7.30</slf4j.version>
         <lombok.version>1.18.16</lombok.version>
         <apache.common.lang3.version>3.11</apache.common.lang3.version>
-        <fastjson.version>1.2.74</fastjson.version>
+        <fastjson.version>1.2.75</fastjson.version>
         <guava.version>30.0-jre</guava.version>
         <jetbrains-annotations>20.1.0</jetbrains-annotations>
 
@@ -40,11 +40,11 @@
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
 
         <!-- scala -->
-        <scala.version>2.13.3</scala.version>
+        <scala.version>2.13.4</scala.version>
         <!-- scope 本地调试时注销 -->
         <scala.scope>compile</scala.scope>
         <scala-maven-plugin.version>4.4.0</scala-maven-plugin.version>
-        <scala-test.version>3.2.2</scala-test.version>
+        <scala-test.version>3.2.3</scala-test.version>
         <scala-test-plus.version>3.1.0.0-RC2</scala-test-plus.version>
     </properties>
 
