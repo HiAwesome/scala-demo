@@ -21,7 +21,7 @@ object A02RulesForImplicits {
 
 object MyConversions {
 
-  implicit def stringWrapper(s: String): IndexedSeq[Char] = s.appended()
+  implicit def stringWrapper(s: String): CharSequence = s.subSequence(0, 1)
 
   implicit def intToString(x: Int): String = String.valueOf(x)
 
