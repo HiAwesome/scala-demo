@@ -10,7 +10,7 @@ import scala.collection.mutable
  *
  * @author moqi On 11/23/20 11:44
  */
-object A01CollectionsConsistency {
+object A02CollectionsConsistency {
 
   def main(args: Array[String]): Unit = {
 
