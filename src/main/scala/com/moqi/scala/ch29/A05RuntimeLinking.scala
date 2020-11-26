@@ -28,8 +28,15 @@ object GotApples {
         SimpleDatabase
 
     object browser extends Browser {
-      override val database: Database = db
+
+      /**
+       * 单例类型
+       */
+      override val database: db.type = db
     }
+
+    for (category <- db.allCategories)
+      browser.displayCateGory(category)
 
     val apple = SimpleDatabase.foodNamed("Apple").get
     for (recipe <- browser.recipesUsing(apple)) println(s"recipe = ${recipe}")
