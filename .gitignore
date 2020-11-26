@@ -5,3 +5,5 @@ target
 
 src/main/resources/output.txt
 script/ch21/*.class
+
+src/main/scala/com/moqi/scala/ch28/*.xml
