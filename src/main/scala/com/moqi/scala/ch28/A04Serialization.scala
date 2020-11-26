@@ -48,25 +48,16 @@ abstract class CCTherm {
 
   override def toString: String = description
 
+  /**
+   * 这个方法不要格式化成三倍的行
+   */
   def toXML: Elem =
     <cctherm>
-      <description>
-        {description}
-      </description>
-      <yearMade>
-        {yearMade}
-      </yearMade>
-      <dateObtained>
-        {dateObtained}
-      </dateObtained>
-      <bookPrice>
-        {bookPrice}
-      </bookPrice>
-      <purchasePrice>
-        {purchasePrice}
-      </purchasePrice>
-      <condition>
-        {condition}
-      </condition>
+      <description>{description}</description>
+      <yearMade>{yearMade}</yearMade>
+      <dateObtained>{dateObtained}</dateObtained>
+      <bookPrice>{bookPrice}</bookPrice>
+      <purchasePrice>{purchasePrice}</purchasePrice>
+      <condition>{condition}</condition>
     </cctherm>
 }
