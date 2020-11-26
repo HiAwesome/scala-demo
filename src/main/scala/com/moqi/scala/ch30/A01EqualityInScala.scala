@@ -11,11 +11,13 @@ object A01EqualityInScala {
 
   }
 
+  /*
   final def ==(that: AnyRef): Boolean =
     if (null eq this) {
       null eq that
     } else {
       this equals that
     }
+  */
 
 }
