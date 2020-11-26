@@ -57,18 +57,9 @@ object FruitSalad extends Recipe(
 
 /**
  * 模拟数据库和浏览器模块
+ * v2: 完全由 trait 组成的 SimpleDatabase 对象
  */
-object SimpleDatabase extends Database {
-  def allFoods = List(Apple, Orange, Cream, Sugar)
-
-  def allRecipes: List[Recipe] = List(FruitSalad)
-
-  private var categories = List(
-    FoodCategory("fruits", List(Apple, Orange)),
-    FoodCategory("misc", List(Cream, Sugar)))
-
-  def allCategories = categories
-}
+object SimpleDatabase extends Database with SimpleFoods with SimpleRecipes {}
 
 object SimpleBrowser extends Browser {
   override val database: Database = SimpleDatabase
