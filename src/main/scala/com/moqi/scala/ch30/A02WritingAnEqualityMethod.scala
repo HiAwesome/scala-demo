@@ -17,10 +17,24 @@ object A02WritingAnEqualityMethod {
 
     func3
 
+    func4
+
+  }
+
+  private def func4: Unit = {
+    val p = new Point(1, 2)
+    val cp = new ColoredPoint(1, 2, Color.Red)
+    println(s"p equals cp = ${p equals cp}")
+    println(s"cp equals p = ${cp equals p}")
+    println()
+
+    println(s"mutable.HashSet[Point](p) contains cp = ${mutable.HashSet[Point](p) contains cp}")
+    println(s"mutable.HashSet[Point](cp) contains p = ${mutable.HashSet[Point](cp) contains p}")
+    println()
   }
 
   private def func3: Unit = {
-    val p = new Point2(1, 2)
+    val p = new VarPoint(1, 2)
     val set = mutable.HashSet(p)
     println(s"set contains p = ${set contains p}")
     p.x += 1
@@ -77,7 +91,7 @@ class Point(val x: Int, val y: Int) {
 /**
  * 用可变字段定义 equals
  */
-class Point2(var x: Int, var y: Int) {
+class VarPoint(var x: Int, var y: Int) {
 
   override def equals(other: Any): Boolean = other match {
     case that: Point => this.x == that.x && this.y == that.y
@@ -85,5 +99,22 @@ class Point2(var x: Int, var y: Int) {
   }
 
   override def hashCode(): Int = (x, y).##
+
+}
+
+object Color extends Enumeration {
+  val Red, Orange, Yellow, Green, Blue, Indigo, Violet = Value
+}
+
+/**
+ * 问题：equals 不对称
+ */
+class ColoredPoint(x: Int, y: Int, val color: Color.Value)
+  extends Point(x, y) {
+
+  override def equals(other: Any): Boolean = other match {
+    case that: ColoredPoint => this.color == that.color && super.equals(that)
+    case _ => false
+  }
 
 }
