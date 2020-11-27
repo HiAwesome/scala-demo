@@ -23,6 +23,21 @@ object A02WritingAnEqualityMethod {
 
     func6
 
+    func7
+
+  }
+
+  private def func7: Unit = {
+    val p = new Point(1, 2)
+    val cp = new ColoredPoint(1, 2, Color.Indigo)
+    val pAnon = new Point(1, 1) {
+      override val y = 2
+    }
+    val list = List(p)
+    println(s"list contains p = ${list contains p}")
+    println(s"list contains cp = ${list contains cp}")
+    println(s"list contains pAnon = ${list contains pAnon}")
+    println()
   }
 
   private def func6: Unit = {
@@ -88,6 +103,7 @@ object A02WritingAnEqualityMethod {
 
 /**
  * 解决子类 equals 传递性问题
+ * 最终带 canEqual 方法的实现
  */
 class Point(val x: Int, val y: Int) {
 
@@ -101,7 +117,7 @@ class Point(val x: Int, val y: Int) {
    * 这个定义要好一点，但仍不完美
    */
   override def equals(other: Any): Boolean = other match {
-    case that: Point => this.x == that.x && this.y == that.y && this.getClass == that.getClass
+    case that: Point => (that canEqual this) && this.x == that.x && this.y == that.y
     case _ => false
   }
 
@@ -112,6 +128,7 @@ class Point(val x: Int, val y: Int) {
    */
   override def hashCode(): Int = (x, y).##
 
+  def canEqual(other: Any): Boolean = other.isInstanceOf[Point]
 }
 
 /**
@@ -141,8 +158,9 @@ class ColoredPoint(x: Int, y: Int, val color: Color.Value)
   extends Point(x, y) {
 
   override def equals(other: Any): Boolean = other match {
-    case that: ColoredPoint => this.color == that.color && super.equals(that)
+    case that: ColoredPoint => (that canEqual this) && this.color == that.color && super.equals(that)
     case _ => false
   }
 
+  override def canEqual(other: Any): Boolean = other.isInstanceOf[ColoredPoint]
 }
