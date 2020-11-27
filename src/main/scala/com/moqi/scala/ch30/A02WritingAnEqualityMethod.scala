@@ -21,7 +21,17 @@ object A02WritingAnEqualityMethod {
 
     func5
 
+    func6
 
+  }
+
+  private def func6: Unit = {
+    val p = new Point(1, 2)
+    val pAnon = new Point(1, 1) {
+      override val y = 2
+    }
+    println(s"p == pAnon = ${p == pAnon}")
+    println()
   }
 
   private def func5: Unit = {
@@ -76,6 +86,9 @@ object A02WritingAnEqualityMethod {
   }
 }
 
+/**
+ * 解决子类 equals 传递性问题
+ */
 class Point(val x: Int, val y: Int) {
 
   /**
@@ -88,7 +101,7 @@ class Point(val x: Int, val y: Int) {
    * 这个定义要好一点，但仍不完美
    */
   override def equals(other: Any): Boolean = other match {
-    case that: Point => this.x == that.x && this.y == that.y
+    case that: Point => this.x == that.x && this.y == that.y && this.getClass == that.getClass
     case _ => false
   }
 
@@ -122,13 +135,13 @@ object Color extends Enumeration {
 /**
  * 问题：equals 不对称
  * 解决方案 v1：更笼统化，问题是：equals 不是可传递的
+ * 解决方案 v2：更严格化，是技术上可行但并不令人满意的 equals 方法
  */
 class ColoredPoint(x: Int, y: Int, val color: Color.Value)
   extends Point(x, y) {
 
   override def equals(other: Any): Boolean = other match {
     case that: ColoredPoint => this.color == that.color && super.equals(that)
-    case that: Point => that equals this
     case _ => false
   }
 
