@@ -53,4 +53,11 @@ class Point(val x: Int, val y: Int) {
     case _ => false
   }
 
+  /**
+   * 加上重写 hashCode 方法
+   * ## 是计算基本类型、引用类型和 null 的 hashCode 的简写方式
+   * 另可参考：https://stackoverflow.com/a/9068566
+   */
+  override def hashCode(): Int = (x, y).##
+
 }
