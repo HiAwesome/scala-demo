@@ -19,6 +19,19 @@ object A02WritingAnEqualityMethod {
 
     func4
 
+    func5
+
+
+  }
+
+  private def func5: Unit = {
+    val p = new Point(1, 2)
+    val redP = new ColoredPoint(1, 2, Color.Red)
+    val blueP = new ColoredPoint(1, 2, Color.Blue)
+    println(s"redP == p = ${redP == p}")
+    println(s"blueP == p = ${blueP == p}")
+    println(s"redP == blueP = ${redP == blueP}")
+    println()
   }
 
   private def func4: Unit = {
@@ -108,12 +121,14 @@ object Color extends Enumeration {
 
 /**
  * 问题：equals 不对称
+ * 解决方案 v1：更笼统化，问题是：equals 不是可传递的
  */
 class ColoredPoint(x: Int, y: Int, val color: Color.Value)
   extends Point(x, y) {
 
   override def equals(other: Any): Boolean = other match {
     case that: ColoredPoint => this.color == that.color && super.equals(that)
+    case that: Point => that equals this
     case _ => false
   }
 
