@@ -13,6 +13,11 @@ object A02WritingAnEqualityMethod {
 
     func1
 
+    func2
+
+  }
+
+  private def func2: Unit = {
     val p1, p2 = new Point(1, 2)
     val set = mutable.HashSet(p1)
     println(s"set contains p2 = ${set contains p2}")
@@ -21,7 +26,6 @@ object A02WritingAnEqualityMethod {
     val p2a: Any = p2
     println(s"p1 equals p2a = ${p1 equals p2a}")
     println()
-
   }
 
   private def func1: Unit = {
@@ -38,7 +42,15 @@ class Point(val x: Int, val y: Int) {
   /**
    * 完全错误的 equals 定义
    */
-  def equals(other: Point): Boolean =
-    this.x == other.x && this.y == other.y
+  /*def equals(other: Point): Boolean =
+    this.x == other.x && this.y == other.y*/
+
+  /**
+   * 这个定义要好一点，但仍不完美
+   */
+  override def equals(other: Any): Boolean = other match {
+    case that: Point => this.x == that.x && this.y == that.y
+    case _ => false
+  }
 
 }
