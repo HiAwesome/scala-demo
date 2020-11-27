@@ -50,11 +50,28 @@ class Branch[+T](
                 ) extends Tree[T] {
 
   override def equals(other: Any): Boolean = other match {
-    case that: Branch[T] =>
+    /**
+     * 不用元素类型 T，用小写字母 t，模式中小写字母开始的类型参数表示未知的类型
+     * 也可以被替换为下划线
+     */
+    case that: Branch[_] =>
+      (that canEqual this) &&
       this.elem == that.elem &&
       this.left == that.left &&
       this.right == that.right
     case _ => false
   }
+
+  override def hashCode(): Int = (elem, left, right).##
+
+  /*def canEqual(other: Any): Boolean = other match {
+    case _: Branch[_] => true
+    case _ => false
+  }*/
+
+  /**
+   * Branch[_] 是所谓的存在类型的简写，粗略地说这是一个通配类型
+   */
+  def canEqual(other: Any): Boolean = other.isInstanceOf[Branch[_]]
 
 }
