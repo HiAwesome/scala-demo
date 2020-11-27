@@ -9,9 +9,19 @@ object A03DefiningEqualityForParameterizedTypes {
 
   def main(args: Array[String]): Unit = {
 
+    func1
 
   }
 
+  /**
+   * 类型被擦除，所以比较结果为 true
+   */
+  private def func1: Unit = {
+    val b1 = new Branch[List[String]](Nil, EmptyTree, EmptyTree)
+    val b2 = new Branch[List[Int]](Nil, EmptyTree, EmptyTree)
+    println(s"b1 == b2 = ${b1 == b2}")
+    println()
+  }
 }
 
 /**
@@ -37,4 +47,14 @@ class Branch[+T](
                   val elem: T,
                   val left: Tree[T],
                   val right: Tree[T]
-                ) extends Tree[T]
+                ) extends Tree[T] {
+
+  override def equals(other: Any): Boolean = other match {
+    case that: Branch[T] =>
+      this.elem == that.elem &&
+      this.left == that.left &&
+      this.right == that.right
+    case _ => false
+  }
+
+}
