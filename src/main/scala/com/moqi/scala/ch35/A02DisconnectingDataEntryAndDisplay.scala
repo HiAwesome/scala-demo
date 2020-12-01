@@ -49,6 +49,9 @@ class Spreadsheet2(val height: Int, val width: Int)
       if (v == null) "" else v.toString
     }
 
+    /**
+     * 可以解析公式的试算表
+     */
     reactions += {
       case TableUpdated(_, rows, column) =>
         for (row <- rows)

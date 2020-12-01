@@ -1,14 +1,24 @@
 package com.moqi.scala.ch35
 
+import scala.swing.{Frame, MainFrame, SimpleSwingApplication}
+
 /**
  * 操作类库
  *
  * @author moqi On 12/1/20 10:03
  */
-object A06OperationLibraries {
+object A06OperationLibraries extends SimpleSwingApplication {
+
+  override def top: Frame = new MainFrame {
+    title = "Real ScalaSheet"
+    contents = new Spreadsheet2(100, 26)
+  }
 
 }
 
+/**
+ * 用于算术操作的类库
+ */
 trait Arithmetic {
   this: Evaluator =>
   operations ++= List(

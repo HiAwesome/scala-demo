@@ -14,6 +14,9 @@ trait Evaluator {
   type Op = List[Double] => Double
   val operations = new collection.mutable.HashMap[String, Op]
 
+  /**
+   * 计算方法
+   */
   def evaluate(e: Formula): Double = try {
     e match {
       case Coord(row, column) =>
