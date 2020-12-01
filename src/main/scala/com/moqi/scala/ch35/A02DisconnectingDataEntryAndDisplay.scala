@@ -1,6 +1,7 @@
 package com.moqi.scala.ch35
 
 import swing._
+import event._
 
 /**
  * 将数据录入与显示分开
@@ -47,6 +48,13 @@ class Spreadsheet2(val height: Int, val width: Int)
       val v = this (row, column)
       if (v == null) "" else v.toString
     }
+
+    reactions += {
+      case TableUpdated(_, rows, column) =>
+        for (row <- rows)
+          cells(row)(column).formula =
+            FormulaParsers.parse(userData(row, column))
+    }
   }
 
   val rowHeader =
@@ -61,7 +69,11 @@ class Spreadsheet2(val height: Int, val width: Int)
 
 class Model(height: Int, width: Int) {
 
-  case class Cell(row: Int, column: Int)
+  case class Cell(row: Int, column: Int) {
+    var formula: Formula = Empty
+
+    override def toString: String = formula.toString
+  }
 
   val cells = Array.ofDim[Cell](height, width)
 
